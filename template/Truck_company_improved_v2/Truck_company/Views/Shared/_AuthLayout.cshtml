@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(ViewData["Title"] ?? "Sign In") - Express Liner LLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwUEQp1n3o2l5rVYqge2eQ1s7r5J+7Dg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/auth.css" asp-append-version="true" />
+</head>
+<body class="auth-body">
+    <header class="auth-header">
+        <div class="auth-container auth-header-inner">
+            <a asp-controller="Home" asp-action="Index" class="auth-brand" aria-label="Back to home">
+                <span class="brand-mark"><i class="fa-solid fa-truck-fast"></i></span>
+                <span class="brand-text">
+                    <span class="brand-line-1">EXPRESS</span>
+                    <span class="brand-line-2">LINER LLC</span>
+                </span>
+            </a>
+            <a class="home-link" asp-controller="Home" asp-action="Index">Back to Website</a>
+        </div>
+    </header>
+
+    <main class="auth-main">
+        <div class="auth-container auth-card-wrap">
+            <section class="auth-card">
+                @RenderBody()
+            </section>
+        </div>
+    </main>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

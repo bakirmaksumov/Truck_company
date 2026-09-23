@@ -1,0 +1,30 @@
+@model List<Truck_company.Models.ContactMessage>
+@{ ViewData["Title"] = "Messages"; }
+<div class="admin-panel">
+    <div class="panel-heading">
+        <h1 class="page-title">Contact Messages</h1>
+        <form method="get" class="admin-search"><input name="search" value="@(Context.Request.Query["search"])" placeholder="Search messages" /><button class="btn btn-primary">Search</button></form>
+    </div>
+    <div class="responsive-table">
+        <table class="table">
+            <thead><tr><th>Sender</th><th>Message</th><th>Date</th><th></th></tr></thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><strong>@item.Name</strong><small>@item.Email · @item.Phone</small></td>
+                    <td>@item.Message</td>
+                    <td>@item.CreatedAt.ToLocalTime().ToString("MMM dd, yyyy HH:mm")</td>
+                    <td>
+                        <form asp-action="Delete" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button class="btn btn-danger" onclick="return confirm('Delete this message?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,213 @@
+﻿@model Truck_company.ViewModels.HomePageViewModel
+@using Truck_company.Models
+@{
+    ViewData["Title"] = "Home";
+    var successMessage = TempData["SuccessMessage"] as string;
+}
+
+@if (!string.IsNullOrWhiteSpace(successMessage))
+{
+    <div class="toast-success" id="successToast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>@successMessage</span>
+        <button type="button" class="toast-close" aria-label="Close">&times;</button>
+    </div>
+}
+
+<section id="home" class="hero-banner" style="background-image: linear-gradient(90deg, rgba(6, 8, 10, 0.94) 0%, rgba(6, 8, 10, 0.75) 38%, rgba(6, 8, 10, 0.2) 72%, rgba(6, 8, 10, 0.05) 100%), url('@Model.HeroSection.BackgroundImageUrl');">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <h1>
+                @Model.HeroSection.Title
+                <span>@Model.HeroSection.HighlightTitle</span>
+            </h1>
+            <p>@Model.HeroSection.Description</p>
+            <div class="hero-actions">
+                <a class="gold-button" href="#services"><i class="fa-solid fa-truck"></i> Our Services</a>
+                <a class="ghost-button" href="tel:@Model.ContactSettings.Phone.Replace(" ", string.Empty)"><i class="fa-solid fa-phone"></i> @Model.ContactSettings.Phone</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about-us" class="services-section">
+    <div class="container">
+        <div class="about-top-grid">
+            <div class="about-copy">
+                <span class="eyebrow">ABOUT US</span>
+                <h2>@Model.AboutSection.Title</h2>
+                <div class="accent-line"></div>
+                <p>@Model.AboutSection.Description</p>
+            </div>
+            <div class="about-photo-wrap">
+                <img src="@(string.IsNullOrEmpty(Model.AboutSection.ImageUrl) ? "/images/photo_6_2026-08-23_21-23-06.jpg" : Model.AboutSection.ImageUrl)" alt="Express Liner LLC Fleet" class="about-photo-main" />
+                <div class="photo-blend-overlay"></div>
+            </div>
+        </div>
+
+        <div class="about-pillars-grid">
+            <div class="pillar-card">
+                <div class="pillar-header">
+                    <div class="pillar-icon-box">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <div class="pillar-title-wrap">
+                        <h3>OUR MISSION</h3>
+                        <p>Deliver freight safely, on time, every time.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-header">
+                    <div class="pillar-icon-box">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div class="pillar-title-wrap">
+                        <h3>OUR VISION</h3>
+                        <p>To be a trusted leader in the transportation industry.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-header">
+                    <div class="pillar-icon-box">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="pillar-title-wrap">
+                        <h3>OUR VALUES</h3>
+                        <p>Safety, reliability, and excellence in every load we haul.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="about-section">
+    <div class="container">
+        <h2 class="section-title centered"><span class="title-flank"></span> Our Services <span class="title-flank"></span></h2>
+        <p class="section-lead">We specialize in dependable freight transportation across the 48 states.</p>
+        <div class="services-grid">
+            @foreach (var service in Model.Services)
+            {
+                <article class="service-card">
+                    <div class="service-icon"><i class="fa-solid @GetIcon(service.Icon)"></i></div>
+                    <h3>@service.Title</h3>
+                    <p>@service.ShortDescription</p>
+                </article>
+            }
+        </div>
+    </div>
+
+    <div class="about-contact-bar">
+        <div class="container contact-bar-inner">
+            <a href="tel:@Model.ContactSettings.Phone.Replace(" ", string.Empty)" class="contact-bar-item">
+                <i class="fa-solid fa-phone"></i>
+                <span>@Model.ContactSettings.Phone</span>
+            </a>
+            <div class="contact-bar-divider"></div>
+            <div class="contact-bar-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>@Model.ContactSettings.Address</span>
+            </div>
+            <div class="contact-bar-divider"></div>
+            <a href="mailto:@Model.ContactSettings.Email" class="contact-bar-item">
+                <i class="fa-solid fa-envelope"></i>
+                <span>@Model.ContactSettings.Email</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="why" class="why-section">
+    <div class="container">
+        <h2 class="section-title centered">Why Choose Us</h2>
+        <p class="section-lead">We deliver more than just freight. We deliver peace of mind.</p>
+        <div class="features-grid">
+            @foreach (var feature in Model.Features)
+            {
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid @GetIcon(feature.Icon)"></i></div>
+                    <h3>@feature.Title</h3>
+                    <p>@feature.Description</p>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="engage-section">
+    <div class="container engage-grid">
+        <div class="company-card">
+            <span class="eyebrow">Contact Us</span>
+            <h3>Get in touch</h3>
+            <p class="lead">We're here to help! Reach out for any questions or to discuss your transportation needs.</p>
+            <p class="company-line"><i class="fa-solid fa-location-dot"></i> @Model.ContactSettings.Address</p>
+            <p class="company-line"><i class="fa-solid fa-phone"></i> @Model.ContactSettings.Phone</p>
+            <p class="company-line"><i class="fa-solid fa-envelope"></i> @Model.ContactSettings.Email</p>
+            <p class="company-line"><i class="fa-solid fa-clock"></i> @Model.ContactSettings.BusinessHours</p>
+            <div class="social-row">
+                @foreach (var link in Model.SocialLinks)
+                {
+                    <a href="@link.Url" aria-label="@link.Platform" target="_blank" rel="noreferrer"><i class="@link.IconCssClass"></i></a>
+                }
+            </div>
+            <form asp-action="SubmitContact" method="post" class="contact-form compact-form">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="form-errors"></div>
+                <div class="field-group"><input asp-for="ContactForm.Name" placeholder="Your Name" required /></div>
+                <div class="field-group"><input asp-for="ContactForm.Email" type="email" placeholder="Your Email" required /></div>
+                <div class="field-group"><input asp-for="ContactForm.Phone" placeholder="Phone Number" /></div>
+                <div class="field-group"><textarea asp-for="ContactForm.Message" rows="3" placeholder="Your Message" required></textarea></div>
+                <button type="submit" class="gold-button full-width"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+            </form>
+        </div>
+
+        <div id="quote" class="quote-card">
+            <span class="eyebrow">Get a Quote</span>
+            <h3>Request a customized quote</h3>
+            <p class="lead">Fill out the form below and we'll get back to you with a customized quote.</p>
+            <form asp-action="SubmitQuote" method="post" class="quote-form">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="form-errors"></div>
+                <div class="field-group"><input asp-for="QuoteForm.FullName" placeholder="Your Name" required /></div>
+                <div class="two-col">
+                    <div class="field-group"><input asp-for="QuoteForm.CompanyName" placeholder="Company Name" /></div>
+                    <div class="field-group"><input asp-for="QuoteForm.Email" type="email" placeholder="Your Email" required /></div>
+                </div>
+                <div class="two-col">
+                    <div class="field-group"><input asp-for="QuoteForm.Phone" placeholder="Phone Number" /></div>
+                    <div class="field-group"><input asp-for="QuoteForm.FreightType" placeholder="Type of Freight" /></div>
+                </div>
+                <div class="two-col">
+                    <div class="field-group"><input asp-for="QuoteForm.PickupLocation" placeholder="Pickup Location" /></div>
+                    <div class="field-group"><input asp-for="QuoteForm.DeliveryLocation" placeholder="Delivery Location" /></div>
+                </div>
+                <div class="two-col">
+                    <div class="field-group"><input asp-for="QuoteForm.ApproximateWeight" placeholder="Approximate Weight" /></div>
+                    <div class="field-group"><input asp-for="QuoteForm.PickupDate" type="date" /></div>
+                </div>
+                <div class="field-group"><textarea asp-for="QuoteForm.Message" rows="3" placeholder="Additional Information"></textarea></div>
+                <button type="submit" class="gold-button full-width large-button"><i class="fa-solid fa-paper-plane"></i> Submit Request</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+@functions {
+    string GetIcon(string? icon)
+    {
+        return icon switch
+        {
+            "truck" => "fa-truck",
+            "location" => "fa-location-dot",
+            "users" => "fa-users",
+            "shield" => "fa-shield-halved",
+            "check" => "fa-clipboard-check",
+            "dollar" => "fa-circle-dollar-to-slot",
+            _ => "fa-truck"
+        };
+    }
+}

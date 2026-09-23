@@ -1,0 +1,51 @@
+@model List<Truck_company.Models.Service>
+@{
+    ViewData["Title"] = "Services";
+}
+
+<div class="admin-panel">
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+        <h1 class="page-title">Services</h1>
+        <a asp-action="Create" class="btn btn-primary">Add Service</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Short Description</th>
+                <th>Order</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.ShortDescription</td>
+                        <td>@item.DisplayOrder</td>
+                        <td>@(item.IsActive ? "Yes" : "No")</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">Edit</a>
+                            <form asp-action="Delete" method="post" style="display:inline;">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this service?');">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5">No services available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,101 @@
+@model Truck_company.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="admin-panel">
+    <h1 class="page-title">Dashboard</h1>
+
+    <div class="dashboard-cards">
+        <a class="metric-card" asp-area="Admin" asp-controller="Services" asp-action="Index">
+            <span class="label">Total Services</span>
+            <strong>@Model.TotalServices</strong>
+        </a>
+        <a class="metric-card" asp-area="Admin" asp-controller="Services" asp-action="Index">
+            <span class="label">Active Services</span>
+            <strong>@Model.ActiveServices</strong>
+        </a>
+        <a class="metric-card" asp-area="Admin" asp-controller="QuoteRequests" asp-action="Index" asp-route-status="New">
+            <span class="label">New Quote Requests</span>
+            <strong>@Model.NewQuoteRequests</strong>
+        </a>
+        <a class="metric-card" asp-area="Admin" asp-controller="QuoteRequests" asp-action="Index">
+            <span class="label">Total Quote Requests</span>
+            <strong>@Model.TotalQuoteRequests</strong>
+        </a>
+        <a class="metric-card" asp-area="Admin" asp-controller="ContactMessages" asp-action="Index">
+            <span class="label">Total Messages</span>
+            <strong>@Model.TotalMessages</strong>
+        </a>
+        <a class="metric-card" asp-area="Admin" asp-controller="Features" asp-action="Index">
+            <span class="label">Active Features</span>
+            <strong>@Model.ActiveFeatures</strong>
+        </a>
+    </div>
+
+    <h2 style="margin-top: 30px; margin-bottom: 12px;">Recent Quote Requests</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.RecentQuoteRequests.Any())
+            {
+                foreach (var item in Model.RecentQuoteRequests)
+                {
+                    <tr>
+                        <td>@item.FullName</td>
+                        <td>@item.CompanyName</td>
+                        <td>@item.Phone</td>
+                        <td><span class="status-badge status-@item.Status.ToString().ToLowerInvariant()">@item.Status</span></td>
+                        <td>@item.CreatedAt.ToString("MMM dd, yyyy")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5">No quote requests yet.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h2 style="margin-top: 30px; margin-bottom: 12px;">Recent Contact Messages</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.RecentContactMessages.Any())
+            {
+                foreach (var item in Model.RecentContactMessages)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Email</td>
+                        <td>@item.Message</td>
+                        <td>@item.CreatedAt.ToString("MMM dd, yyyy")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">No messages yet.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,35 @@
+# Build artifacts
+bin/
+obj/
+publish/
+*.zip
+
+# Local agent metadata
+.claude/
+
+# SQLite leftovers from legacy local development
+app.db
+app.db-shm
+app.db-wal
+
+# ASP.NET Core Data Protection keys
+App_Data/DataProtectionKeys/*
+!App_Data/DataProtectionKeys/.gitkeep
+
+# Uploaded files
+wwwroot/uploads/*
+!wwwroot/uploads/.gitkeep
+
+# Environment-specific production settings
+appsettings.Production.json
+
+# Publish profile user secrets
+*.publishSettings
+*.pubxml.user
+
+# Optional logs
+logs/
+
+# IDE
+.vs/
+*.user

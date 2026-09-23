@@ -1,0 +1,59 @@
+@model Truck_company.Models.QuoteRequest
+@{
+    ViewData["Title"] = "Quote Details";
+}
+
+<div class="admin-panel">
+    <h1 class="page-title">Quote Details</h1>
+
+    <div class="form-grid">
+        <div class="field">
+            <label>Full Name</label>
+            <input value="@Model.FullName" readonly />
+        </div>
+        <div class="field">
+            <label>Company</label>
+            <input value="@Model.CompanyName" readonly />
+        </div>
+        <div class="field">
+            <label>Email</label>
+            <input value="@Model.Email" readonly />
+        </div>
+        <div class="field">
+            <label>Phone</label>
+            <input value="@Model.Phone" readonly />
+        </div>
+        <div class="field">
+            <label>Pickup Location</label>
+            <input value="@Model.PickupLocation" readonly />
+        </div>
+        <div class="field">
+            <label>Delivery Location</label>
+            <input value="@Model.DeliveryLocation" readonly />
+        </div>
+        <div class="field">
+            <label>Freight Type</label>
+            <input value="@Model.FreightType" readonly />
+        </div>
+        <div class="field">
+            <label>Approximate Weight</label>
+            <input value="@Model.ApproximateWeight" readonly />
+        </div>
+        <div class="field">
+            <label>Pickup Date</label>
+            <input value="@(Model.PickupDate.HasValue ? Model.PickupDate.Value.ToString("yyyy-MM-dd") : "")" readonly />
+        </div>
+        <div class="field">
+            <label>Status</label>
+            <input value="@Model.Status" readonly />
+        </div>
+        <div class="field full-span">
+            <label>Message</label>
+            <textarea readonly>@Model.Message</textarea>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </div>
+</div>

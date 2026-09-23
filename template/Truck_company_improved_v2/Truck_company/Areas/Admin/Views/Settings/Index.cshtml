@@ -1,0 +1,94 @@
+@model Truck_company.ViewModels.AdminSettingsViewModel
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<div class="admin-panel">
+    <h1 class="page-title">Website Settings</h1>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="admin-success">@TempData["SuccessMessage"]</div>
+    }
+
+    <form asp-action="Index" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="form-grid">
+            <div class="field full-span">
+                <label asp-for="SiteSettings.CompanyName"></label>
+                <input asp-for="SiteSettings.CompanyName" />
+            </div>
+            <div class="field">
+                <label asp-for="SiteSettings.LogoText"></label>
+                <input asp-for="SiteSettings.LogoText" />
+            </div>
+            <div class="field">
+                <label asp-for="SiteSettings.LogoSubText"></label>
+                <input asp-for="SiteSettings.LogoSubText" />
+            </div>
+            <div class="field full-span"><label>Logo image</label><input type="file" name="logoFile" accept="image/jpeg,image/png,image/webp" /></div>
+            <div class="field full-span">
+                <label asp-for="HeroSection.Title"></label>
+                <input asp-for="HeroSection.Title" />
+            </div>
+            <div class="field full-span">
+                <label asp-for="HeroSection.HighlightTitle"></label>
+                <input asp-for="HeroSection.HighlightTitle" />
+            </div>
+            <div class="field full-span">
+                <label asp-for="HeroSection.Description"></label>
+                <textarea asp-for="HeroSection.Description"></textarea>
+            </div>
+            <div class="field full-span">
+                <label asp-for="HeroSection.BackgroundImageUrl"></label>
+                <input asp-for="HeroSection.BackgroundImageUrl" />
+            </div>
+            <div class="field full-span"><label>Upload hero image</label><input type="file" name="heroFile" accept="image/jpeg,image/png,image/webp" /></div>
+            <div class="field"><label asp-for="HeroSection.PrimaryButtonText"></label><input asp-for="HeroSection.PrimaryButtonText" /></div><div class="field"><label asp-for="HeroSection.PrimaryButtonUrl"></label><input asp-for="HeroSection.PrimaryButtonUrl" /></div>
+            <div class="field"><label asp-for="HeroSection.SecondaryButtonText"></label><input asp-for="HeroSection.SecondaryButtonText" /></div><div class="field"><label asp-for="HeroSection.SecondaryButtonUrl"></label><input asp-for="HeroSection.SecondaryButtonUrl" /></div>
+            <div class="field full-span">
+                <label asp-for="AboutSection.Title"></label>
+                <input asp-for="AboutSection.Title" />
+            </div>
+            <div class="field full-span">
+                <label asp-for="AboutSection.Description"></label>
+                <textarea asp-for="AboutSection.Description"></textarea>
+            </div>
+            <div class="field full-span">
+                <label asp-for="AboutSection.ImageUrl"></label>
+                <input asp-for="AboutSection.ImageUrl" />
+            </div>
+            <div class="field full-span"><label>Upload about image</label><input type="file" name="aboutFile" accept="image/jpeg,image/png,image/webp" /></div>
+            <div class="field">
+                <label asp-for="ContactSettings.Phone"></label>
+                <input asp-for="ContactSettings.Phone" />
+            </div>
+            <div class="field">
+                <label asp-for="ContactSettings.Email"></label>
+                <input asp-for="ContactSettings.Email" />
+            </div>
+            <div class="field full-span">
+                <label asp-for="ContactSettings.Address"></label>
+                <input asp-for="ContactSettings.Address" />
+            </div>
+            <div class="field full-span">
+                <label asp-for="ContactSettings.BusinessHours"></label>
+                <input asp-for="ContactSettings.BusinessHours" />
+            </div>
+            <div class="field full-span"><label asp-for="ContactSettings.MapUrl"></label><input asp-for="ContactSettings.MapUrl" /></div>
+            <div class="field"><label asp-for="ContactSettings.FacebookUrl"></label><input asp-for="ContactSettings.FacebookUrl" /></div><div class="field"><label asp-for="ContactSettings.InstagramUrl"></label><input asp-for="ContactSettings.InstagramUrl" /></div><div class="field"><label asp-for="ContactSettings.LinkedInUrl"></label><input asp-for="ContactSettings.LinkedInUrl" /></div>
+            <div class="field full-span"><h2>SEO & Social Sharing</h2></div>
+            <div class="field full-span"><label asp-for="SiteSettings.MetaTitle"></label><input asp-for="SiteSettings.MetaTitle" /></div>
+            <div class="field full-span"><label asp-for="SiteSettings.MetaDescription"></label><textarea asp-for="SiteSettings.MetaDescription"></textarea></div>
+            <div class="field full-span"><label asp-for="SiteSettings.MetaKeywords"></label><input asp-for="SiteSettings.MetaKeywords" /></div>
+            <div class="field full-span"><label asp-for="SiteSettings.OpenGraphTitle"></label><input asp-for="SiteSettings.OpenGraphTitle" /></div>
+            <div class="field full-span"><label asp-for="SiteSettings.OpenGraphDescription"></label><textarea asp-for="SiteSettings.OpenGraphDescription"></textarea></div>
+            <div class="field full-span"><label>Open Graph image</label><input type="file" name="ogFile" accept="image/jpeg,image/png,image/webp" /></div>
+        </div>
+
+        <div class="actions">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+    </form>
+</div>

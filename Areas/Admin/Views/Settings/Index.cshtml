@@ -1,0 +1,77 @@
+@model Truck_company.ViewModels.AdminSettingsInputViewModel
+@{
+    ViewData["Title"] = "Website Settings";
+}
+
+<div class="admin-panel">
+    <h1 class="page-title">Website Settings</h1>
+
+    @if (TempData["SuccessMessage"] is string successMessage && !string.IsNullOrWhiteSpace(successMessage))
+    {
+        <div class="admin-success">@successMessage</div>
+    }
+
+    <form asp-action="Index" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly"></div>
+
+        <div class="form-grid">
+            <div class="field full-span"><h2>Site Settings</h2></div>
+            <div class="field full-span"><label asp-for="SiteSettings.CompanyName"></label><input asp-for="SiteSettings.CompanyName" /><span asp-validation-for="SiteSettings.CompanyName"></span></div>
+            <div class="field"><label asp-for="SiteSettings.LogoText"></label><input asp-for="SiteSettings.LogoText" /><span asp-validation-for="SiteSettings.LogoText"></span></div>
+            <div class="field"><label asp-for="SiteSettings.LogoSubText"></label><input asp-for="SiteSettings.LogoSubText" /><span asp-validation-for="SiteSettings.LogoSubText"></span></div>
+            <div class="field full-span"><label asp-for="SiteSettings.Tagline"></label><input asp-for="SiteSettings.Tagline" /><span asp-validation-for="SiteSettings.Tagline"></span></div>
+            <div class="field"><label asp-for="SiteSettings.PrimaryPhone"></label><input asp-for="SiteSettings.PrimaryPhone" /><span asp-validation-for="SiteSettings.PrimaryPhone"></span></div>
+            <div class="field"><label asp-for="SiteSettings.Email"></label><input asp-for="SiteSettings.Email" /><span asp-validation-for="SiteSettings.Email"></span></div>
+            <div class="field full-span"><label asp-for="SiteSettings.Address"></label><input asp-for="SiteSettings.Address" /><span asp-validation-for="SiteSettings.Address"></span></div>
+            <div class="field full-span"><label asp-for="SiteSettings.FooterText"></label><input asp-for="SiteSettings.FooterText" /><span asp-validation-for="SiteSettings.FooterText"></span></div>
+            <div class="field full-span"><label asp-for="SiteSettings.CopyrightText"></label><input asp-for="SiteSettings.CopyrightText" /><span asp-validation-for="SiteSettings.CopyrightText"></span></div>
+            <div class="field full-span"><label>Logo image</label><input type="file" name="logoFile" accept="image/jpeg,image/png,image/webp" />@if (!string.IsNullOrWhiteSpace(Model.CurrentLogoUrl)){<small>Current: @Model.CurrentLogoUrl</small>}</div>
+
+            <div class="field full-span"><h2>Hero</h2></div>
+            <div class="field full-span"><label asp-for="HeroSection.Title"></label><input asp-for="HeroSection.Title" /><span asp-validation-for="HeroSection.Title"></span></div>
+            <div class="field full-span"><label asp-for="HeroSection.HighlightTitle"></label><input asp-for="HeroSection.HighlightTitle" /><span asp-validation-for="HeroSection.HighlightTitle"></span></div>
+            <div class="field full-span"><label asp-for="HeroSection.Description"></label><textarea asp-for="HeroSection.Description"></textarea><span asp-validation-for="HeroSection.Description"></span></div>
+            <div class="field full-span"><label asp-for="HeroSection.BackgroundImageUrl"></label><input asp-for="HeroSection.BackgroundImageUrl" /><span asp-validation-for="HeroSection.BackgroundImageUrl"></span></div>
+            <div class="field full-span"><label>Upload hero image</label><input type="file" name="heroFile" accept="image/jpeg,image/png,image/webp" />@if (!string.IsNullOrWhiteSpace(Model.CurrentHeroImageUrl)){<small>Current: @Model.CurrentHeroImageUrl</small>}</div>
+            <div class="field"><label asp-for="HeroSection.PrimaryButtonText"></label><input asp-for="HeroSection.PrimaryButtonText" /><span asp-validation-for="HeroSection.PrimaryButtonText"></span></div>
+            <div class="field"><label asp-for="HeroSection.PrimaryButtonUrl"></label><input asp-for="HeroSection.PrimaryButtonUrl" /><span asp-validation-for="HeroSection.PrimaryButtonUrl"></span></div>
+            <div class="field"><label asp-for="HeroSection.SecondaryButtonText"></label><input asp-for="HeroSection.SecondaryButtonText" /><span asp-validation-for="HeroSection.SecondaryButtonText"></span></div>
+            <div class="field"><label asp-for="HeroSection.SecondaryButtonUrl"></label><input asp-for="HeroSection.SecondaryButtonUrl" /><span asp-validation-for="HeroSection.SecondaryButtonUrl"></span></div>
+
+            <div class="field full-span"><h2>About</h2></div>
+            <div class="field full-span"><label asp-for="AboutSection.Title"></label><input asp-for="AboutSection.Title" /><span asp-validation-for="AboutSection.Title"></span></div>
+            <div class="field full-span"><label asp-for="AboutSection.Subtitle"></label><input asp-for="AboutSection.Subtitle" /><span asp-validation-for="AboutSection.Subtitle"></span></div>
+            <div class="field full-span"><label asp-for="AboutSection.Description"></label><textarea asp-for="AboutSection.Description"></textarea><span asp-validation-for="AboutSection.Description"></span></div>
+            <div class="field full-span"><label asp-for="AboutSection.ImageUrl"></label><input asp-for="AboutSection.ImageUrl" /><span asp-validation-for="AboutSection.ImageUrl"></span></div>
+            <div class="field full-span"><label>Upload about image</label><input type="file" name="aboutFile" accept="image/jpeg,image/png,image/webp" />@if (!string.IsNullOrWhiteSpace(Model.CurrentAboutImageUrl)){<small>Current: @Model.CurrentAboutImageUrl</small>}</div>
+
+            <div class="field full-span"><h2>Contact</h2></div>
+            <div class="field full-span"><label asp-for="ContactSettings.CompanyName"></label><input asp-for="ContactSettings.CompanyName" /><span asp-validation-for="ContactSettings.CompanyName"></span></div>
+            <div class="field full-span"><label asp-for="ContactSettings.Address"></label><input asp-for="ContactSettings.Address" /><span asp-validation-for="ContactSettings.Address"></span></div>
+            <div class="field"><label asp-for="ContactSettings.Phone"></label><input asp-for="ContactSettings.Phone" /><span asp-validation-for="ContactSettings.Phone"></span></div>
+            <div class="field"><label asp-for="ContactSettings.Email"></label><input asp-for="ContactSettings.Email" /><span asp-validation-for="ContactSettings.Email"></span></div>
+            <div class="field full-span"><label asp-for="ContactSettings.BusinessHours"></label><input asp-for="ContactSettings.BusinessHours" /><span asp-validation-for="ContactSettings.BusinessHours"></span></div>
+            <div class="field full-span"><label asp-for="ContactSettings.MapUrl"></label><input asp-for="ContactSettings.MapUrl" /><span asp-validation-for="ContactSettings.MapUrl"></span></div>
+            <div class="field"><label asp-for="ContactSettings.FacebookUrl"></label><input asp-for="ContactSettings.FacebookUrl" /></div>
+            <div class="field"><label asp-for="ContactSettings.InstagramUrl"></label><input asp-for="ContactSettings.InstagramUrl" /></div>
+            <div class="field"><label asp-for="ContactSettings.LinkedInUrl"></label><input asp-for="ContactSettings.LinkedInUrl" /></div>
+
+            <div class="field full-span"><h2>SEO</h2></div>
+            <div class="field full-span"><label asp-for="SiteSettings.MetaTitle"></label><input asp-for="SiteSettings.MetaTitle" /><span asp-validation-for="SiteSettings.MetaTitle"></span></div>
+            <div class="field full-span"><label asp-for="SiteSettings.MetaDescription"></label><textarea asp-for="SiteSettings.MetaDescription"></textarea><span asp-validation-for="SiteSettings.MetaDescription"></span></div>
+            <div class="field full-span"><label asp-for="SiteSettings.MetaKeywords"></label><input asp-for="SiteSettings.MetaKeywords" /><span asp-validation-for="SiteSettings.MetaKeywords"></span></div>
+            <div class="field full-span"><label asp-for="SiteSettings.OpenGraphTitle"></label><input asp-for="SiteSettings.OpenGraphTitle" /><span asp-validation-for="SiteSettings.OpenGraphTitle"></span></div>
+            <div class="field full-span"><label asp-for="SiteSettings.OpenGraphDescription"></label><textarea asp-for="SiteSettings.OpenGraphDescription"></textarea><span asp-validation-for="SiteSettings.OpenGraphDescription"></span></div>
+            <div class="field full-span"><label>Open Graph image</label><input type="file" name="ogFile" accept="image/jpeg,image/png,image/webp" />@if (!string.IsNullOrWhiteSpace(Model.CurrentOpenGraphImageUrl)){<small>Current: @Model.CurrentOpenGraphImageUrl</small>}</div>
+        </div>
+
+        <div class="actions">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

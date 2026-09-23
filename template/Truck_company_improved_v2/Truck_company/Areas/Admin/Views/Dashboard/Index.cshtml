@@ -1,0 +1,61 @@
+@model Truck_company.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="admin-panel">
+    <h1 class="page-title">Dashboard</h1>
+
+    <div class="dashboard-cards">
+        <div class="metric-card">
+            <span class="label">Total Services</span>
+            <strong>@Model.TotalServices</strong>
+        </div>
+        <div class="metric-card">
+            <span class="label">New Quote Requests</span>
+            <strong>@Model.NewQuoteRequests</strong>
+        </div>
+        <div class="metric-card">
+            <span class="label">Total Messages</span>
+            <strong>@Model.TotalMessages</strong>
+        </div>
+        <div class="metric-card">
+            <span class="label">Active Features</span>
+            <strong>@Model.ActiveFeatures</strong>
+        </div>
+    </div>
+
+    <h2 style="margin-top: 30px; margin-bottom: 12px;">Recent Quote Requests</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.RecentQuoteRequests.Any())
+            {
+                foreach (var item in Model.RecentQuoteRequests)
+                {
+                    <tr>
+                        <td>@item.FullName</td>
+                        <td>@item.CompanyName</td>
+                        <td>@item.Phone</td>
+                        <td><span class="status-badge status-@item.Status.ToString().ToLowerInvariant()">@item.Status</span></td>
+                        <td>@item.CreatedAt.ToString("MMM dd, yyyy")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5">No quote requests yet.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

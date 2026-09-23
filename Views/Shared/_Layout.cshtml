@@ -1,0 +1,107 @@
+﻿@{
+    var siteSettings = Model is Truck_company.ViewModels.HomePageViewModel homeModel ? homeModel.SiteSettings : null;
+    var footerText = Model is Truck_company.ViewModels.HomePageViewModel homePageModel ? homePageModel.SiteSettings.FooterText : "Your freight is our priority.";
+    var contactPhone = Model is Truck_company.ViewModels.HomePageViewModel homePageModel2 ? homePageModel2.ContactSettings.Phone : "+1 (386) 8438081";
+    var contactAddress = Model is Truck_company.ViewModels.HomePageViewModel homePageModel3 ? homePageModel3.ContactSettings.Address : "1917 James St, South Daytona FL 32119";
+    var contactEmail = Model is Truck_company.ViewModels.HomePageViewModel homePageModel4 ? homePageModel4.ContactSettings.Email : "info@expressliner.com";
+    var companyName = Model is Truck_company.ViewModels.HomePageViewModel homePageModel5 ? homePageModel5.SiteSettings.CompanyName : "Express Liner LLC";
+    var metaTitle = !string.IsNullOrWhiteSpace(siteSettings?.MetaTitle) ? siteSettings.MetaTitle : (ViewData["Title"]?.ToString() ?? "Express Liner LLC");
+    var metaDescription = !string.IsNullOrWhiteSpace(siteSettings?.MetaDescription) ? siteSettings.MetaDescription : "Reliable freight and logistics transportation services.";
+    var metaKeywords = siteSettings?.MetaKeywords ?? "freight, trucking, logistics";
+    var ogTitle = !string.IsNullOrWhiteSpace(siteSettings?.OpenGraphTitle) ? siteSettings.OpenGraphTitle : metaTitle;
+    var ogDescription = !string.IsNullOrWhiteSpace(siteSettings?.OpenGraphDescription) ? siteSettings.OpenGraphDescription : metaDescription;
+    var canonicalUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@metaTitle</title>
+    <meta name="description" content="@metaDescription" />
+    <meta name="keywords" content="@metaKeywords" />
+    <link rel="canonical" href="@canonicalUrl" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@ogTitle" />
+    <meta property="og:description" content="@ogDescription" />
+    <meta property="og:url" content="@canonicalUrl" />
+    @if (!string.IsNullOrWhiteSpace(siteSettings?.OpenGraphImageUrl))
+    {
+        <meta property="og:image" content="@siteSettings.OpenGraphImageUrl" />
+    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container topbar-inner">
+            <a asp-controller="Home" asp-action="Index" class="brand" aria-label="Home">
+                <span class="brand-mark"><i class="fa-solid fa-truck-fast"></i></span>
+                <span class="brand-text">
+                    <span class="brand-line-1">EXPRESS</span>
+                    <span class="brand-line-2">LINER LLC</span>
+                </span>
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a asp-controller="Home" asp-action="Index" asp-fragment="home">Home</a>
+                <a asp-controller="Home" asp-action="Index" asp-fragment="about-us">About Us</a>
+                <a asp-controller="Home" asp-action="Index" asp-fragment="services">Services</a>
+                <a asp-controller="Home" asp-action="Index" asp-fragment="why">Why Choose Us</a>
+                <a asp-controller="Home" asp-action="Index" asp-fragment="contact">Contact Us</a>
+            </nav>
+
+            <a class="quote-button" asp-controller="Home" asp-action="Index" asp-fragment="quote">Get a Quote</a>
+            <button class="nav-toggle" type="button" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <div class="brand small-brand">
+                    <span class="brand-mark"><i class="fa-solid fa-truck-fast"></i></span>
+                    <span class="brand-text">
+                        <span class="brand-line-1">EXPRESS</span>
+                        <span class="brand-line-2">LINER LLC</span>
+                    </span>
+                </div>
+                <p>@footerText</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <a asp-controller="Home" asp-action="Index" asp-fragment="home">Home</a>
+                    <a asp-controller="Home" asp-action="Index" asp-fragment="about-us">About Us</a>
+                    <a asp-controller="Home" asp-action="Index" asp-fragment="services">Services</a>
+                    <a asp-controller="Home" asp-action="Index" asp-fragment="why">Why Choose Us</a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <div><i class="fa-solid fa-phone"></i> <span>@contactPhone</span></div>
+                <div><i class="fa-solid fa-location-dot"></i> <span>@contactAddress</span></div>
+                <div><i class="fa-solid fa-envelope"></i> <span>@contactEmail</span></div>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            &copy; @(DateTime.Now.Year) @companyName . All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

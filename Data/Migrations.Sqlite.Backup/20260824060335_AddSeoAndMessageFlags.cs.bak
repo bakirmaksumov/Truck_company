@@ -1,0 +1,106 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace Truck_company.Data.Migrations
+{
+    /// <inheritdoc />
+    public partial class AddSeoAndMessageFlags : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.AddColumn<string>(
+                name: "MetaDescription",
+                table: "SiteSettings",
+                type: "TEXT",
+                maxLength: 320,
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<string>(
+                name: "MetaKeywords",
+                table: "SiteSettings",
+                type: "TEXT",
+                maxLength: 320,
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<string>(
+                name: "MetaTitle",
+                table: "SiteSettings",
+                type: "TEXT",
+                maxLength: 160,
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<string>(
+                name: "OpenGraphDescription",
+                table: "SiteSettings",
+                type: "TEXT",
+                maxLength: 320,
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<string>(
+                name: "OpenGraphImageUrl",
+                table: "SiteSettings",
+                type: "TEXT",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "OpenGraphTitle",
+                table: "SiteSettings",
+                type: "TEXT",
+                maxLength: 160,
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<bool>(
+                name: "IsRead",
+                table: "ContactMessages",
+                type: "INTEGER",
+                nullable: false,
+                defaultValue: false);
+
+            migrationBuilder.UpdateData(
+                table: "SiteSettings",
+                keyColumn: "Id",
+                keyValue: 1,
+                columns: new[] { "MetaDescription", "MetaKeywords", "MetaTitle", "OpenGraphDescription", "OpenGraphImageUrl", "OpenGraphTitle" },
+                values: new object[] { "Reliable dry van, regional and long-haul freight transportation across the United States.", "freight, trucking, logistics, dry van, transportation", "Express Liner LLC | Freight Transportation", "Safe, reliable and on-time freight transportation.", null, "Moving Freight. Delivering Trust." });
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropColumn(
+                name: "MetaDescription",
+                table: "SiteSettings");
+
+            migrationBuilder.DropColumn(
+                name: "MetaKeywords",
+                table: "SiteSettings");
+
+            migrationBuilder.DropColumn(
+                name: "MetaTitle",
+                table: "SiteSettings");
+
+            migrationBuilder.DropColumn(
+                name: "OpenGraphDescription",
+                table: "SiteSettings");
+
+            migrationBuilder.DropColumn(
+                name: "OpenGraphImageUrl",
+                table: "SiteSettings");
+
+            migrationBuilder.DropColumn(
+                name: "OpenGraphTitle",
+                table: "SiteSettings");
+
+            migrationBuilder.DropColumn(
+                name: "IsRead",
+                table: "ContactMessages");
+        }
+    }
+}

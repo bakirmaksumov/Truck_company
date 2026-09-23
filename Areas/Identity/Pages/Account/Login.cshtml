@@ -1,0 +1,43 @@
+@page
+@model Truck_company.Areas.Identity.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<h1 class="auth-title">Welcome back</h1>
+<p class="auth-subtitle">Sign in to manage your website.</p>
+
+<form method="post" id="login-form">
+    <input type="hidden" asp-for="ReturnUrl" />
+    <div asp-validation-summary="ModelOnly" class="form-errors" role="alert"></div>
+
+    <div class="auth-field">
+        <label asp-for="Input.Email"></label>
+        <input asp-for="Input.Email" autocomplete="username" />
+        <span asp-validation-for="Input.Email"></span>
+    </div>
+    <div class="auth-field">
+        <label asp-for="Input.Password"></label>
+        <input asp-for="Input.Password" autocomplete="current-password" />
+        <span asp-validation-for="Input.Password"></span>
+    </div>
+    <div class="auth-checkbox">
+        <input asp-for="Input.RememberMe" />
+        <label asp-for="Input.RememberMe"></label>
+    </div>
+
+    <div class="g-recaptcha" data-sitekey="@Model.SiteKey"></div>
+    <input type="hidden" asp-for="Input.RecaptchaToken" id="recaptcha-token" />
+
+    <button type="submit" class="auth-submit">Log in</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function () {
+            document.getElementById('recaptcha-token').value = grecaptcha.getResponse();
+        });
+    </script>
+}

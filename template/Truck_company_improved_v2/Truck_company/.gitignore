@@ -1,0 +1,8 @@
+bin/
+obj/
+app.db
+app.db-shm
+app.db-wal
+wwwroot/uploads/*
+!wwwroot/uploads/.gitkeep
+appsettings.Production.json
