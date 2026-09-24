@@ -45,7 +45,7 @@ public class LoginModel : PageModel
     public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
     {
         ReturnUrl ??= returnUrl;
-        returnUrl ??= Url.Content("~/");
+        var redirectUrl = string.IsNullOrWhiteSpace(ReturnUrl) ? Url.Content("~/Admin") : ReturnUrl;
 
         if (!ModelState.IsValid)
         {
@@ -73,12 +73,12 @@ public class LoginModel : PageModel
         if (result.Succeeded)
         {
             _logger.LogInformation("User logged in.");
-            return LocalRedirect(returnUrl);
+            return LocalRedirect(redirectUrl);
         }
 
         if (result.RequiresTwoFactor)
         {
-            return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+            return RedirectToPage("./LoginWith2fa", new { ReturnUrl = redirectUrl, RememberMe = Input.RememberMe });
         }
 
         if (result.IsLockedOut)
