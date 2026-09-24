@@ -47,20 +47,8 @@ public class LoginModel : PageModel
         ReturnUrl ??= returnUrl;
         returnUrl ??= Url.Content("~/");
 
-        _logger.LogWarning(
-            "Login POST received. ModelStateValid={ModelStateValid}, RecaptchaTokenLength={TokenLength}",
-            ModelState.IsValid,
-            Input.RecaptchaToken?.Length ?? 0);
-
         if (!ModelState.IsValid)
         {
-            foreach (var entry in ModelState)
-            {
-                foreach (var error in entry.Value.Errors)
-                {
-                    _logger.LogWarning("ModelState error on {Field}: {Error}", entry.Key, error.ErrorMessage);
-                }
-            }
             return Page();
         }
 
