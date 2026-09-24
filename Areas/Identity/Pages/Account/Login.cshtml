@@ -7,18 +7,18 @@
 <h1 class="auth-title">Welcome back</h1>
 <p class="auth-subtitle">Sign in to manage your website.</p>
 
-<form method="post" id="login-form">
+<form method="post" id="login-form" class="login-form">
     <input type="hidden" asp-for="ReturnUrl" />
     <div asp-validation-summary="ModelOnly" class="form-errors" role="alert"></div>
 
     <div class="auth-field">
         <label asp-for="Input.Email"></label>
-        <input asp-for="Input.Email" autocomplete="username" />
+        <input asp-for="Input.Email" autocomplete="username" placeholder="name@example.com" />
         <span asp-validation-for="Input.Email"></span>
     </div>
     <div class="auth-field">
         <label asp-for="Input.Password"></label>
-        <input asp-for="Input.Password" autocomplete="current-password" />
+        <input asp-for="Input.Password" autocomplete="current-password" placeholder="Enter your password" />
         <span asp-validation-for="Input.Password"></span>
     </div>
     <div class="auth-checkbox">
@@ -26,10 +26,13 @@
         <label asp-for="Input.RememberMe"></label>
     </div>
 
-    <div class="g-recaptcha" data-sitekey="@Model.SiteKey"></div>
+    <div class="captcha-group">
+        <span class="captcha-label">Security check</span>
+        <div class="g-recaptcha" data-sitekey="@Model.SiteKey"></div>
+    </div>
     <input type="hidden" asp-for="Input.RecaptchaToken" id="recaptcha-token" />
 
-    <button type="submit" class="auth-submit">Log in</button>
+    <button type="submit" class="auth-submit">Log in to admin panel</button>
 </form>
 
 @section Scripts {
