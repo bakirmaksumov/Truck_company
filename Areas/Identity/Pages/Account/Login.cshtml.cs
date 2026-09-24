@@ -59,6 +59,7 @@ public class LoginModel : PageModel
 
         if (!captchaValid)
         {
+            _logger.LogWarning("Login rejected because reCAPTCHA verification failed for {Email}.", Input.Email);
             ModelState.AddModelError(string.Empty, "Please complete the CAPTCHA verification.");
             return Page();
         }
@@ -87,6 +88,7 @@ public class LoginModel : PageModel
         }
 
         ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+        _logger.LogWarning("Login rejected by Identity for {Email}. Result: Failed.", Input.Email);
         return Page();
     }
 

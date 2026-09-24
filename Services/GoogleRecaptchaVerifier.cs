@@ -7,11 +7,13 @@ public sealed class GoogleRecaptchaVerifier
 {
     private readonly HttpClient _httpClient;
     private readonly GoogleRecaptchaOptions _options;
+    private readonly ILogger<GoogleRecaptchaVerifier> _logger;
 
-    public GoogleRecaptchaVerifier(HttpClient httpClient, IOptions<GoogleRecaptchaOptions> options)
+    public GoogleRecaptchaVerifier(HttpClient httpClient, IOptions<GoogleRecaptchaOptions> options, ILogger<GoogleRecaptchaVerifier> logger)
     {
         _httpClient = httpClient;
         _options = options.Value;
+        _logger = logger;
     }
 
     public async Task<bool> VerifyAsync(string? token, string? remoteIp, CancellationToken cancellationToken = default)
@@ -39,11 +41,16 @@ public sealed class GoogleRecaptchaVerifier
         }
 
         var result = await response.Content.ReadFromJsonAsync<GoogleRecaptchaResponse>(cancellationToken);
+        if (result?.Success != true)
+        {
+            _logger.LogWarning("reCAPTCHA verification rejected the login token. Error codes: {ErrorCodes}", string.Join(",", result?.ErrorCodes ?? []));
+        }
         return result?.Success == true;
     }
 
     private sealed class GoogleRecaptchaResponse
     {
         public bool Success { get; set; }
+        public string[] ErrorCodes { get; set; } = [];
     }
 }
