@@ -8,6 +8,7 @@
 <p class="auth-subtitle">Sign in to manage your website.</p>
 
 <form method="post" id="login-form" class="login-form">
+    @Html.AntiForgeryToken()
     <input type="hidden" asp-for="ReturnUrl" />
     <div asp-validation-summary="ModelOnly" class="form-errors" role="alert"></div>
 
