@@ -90,6 +90,18 @@ public class AboutSectionInputViewModel
     public string Description { get; set; } = string.Empty;
     [StringLength(600)]
     public string ImageUrl { get; set; } = string.Empty;
+    [Required, StringLength(80)]
+    public string MissionTitle { get; set; } = string.Empty;
+    [Required, StringLength(400)]
+    public string MissionDescription { get; set; } = string.Empty;
+    [Required, StringLength(80)]
+    public string VisionTitle { get; set; } = string.Empty;
+    [Required, StringLength(400)]
+    public string VisionDescription { get; set; } = string.Empty;
+    [Required, StringLength(80)]
+    public string ValuesTitle { get; set; } = string.Empty;
+    [Required, StringLength(400)]
+    public string ValuesDescription { get; set; } = string.Empty;
     public bool IsActive { get; set; } = true;
 }
 

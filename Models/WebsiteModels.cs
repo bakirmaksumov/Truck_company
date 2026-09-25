@@ -71,6 +71,18 @@ public class AboutSection
     public string Description { get; set; } = "At Express Liner LLC, our mission is simple – to provide dependable, efficient, and cost-effective transportation solutions.";
     [Required, StringLength(600)]
     public string ImageUrl { get; set; } = "https://images.unsplash.com/...";
+    [Required, StringLength(80)]
+    public string MissionTitle { get; set; } = "Our Mission";
+    [Required, StringLength(400)]
+    public string MissionDescription { get; set; } = "Deliver freight safely, on time, every time.";
+    [Required, StringLength(80)]
+    public string VisionTitle { get; set; } = "Our Vision";
+    [Required, StringLength(400)]
+    public string VisionDescription { get; set; } = "To be a trusted leader in the transportation industry.";
+    [Required, StringLength(80)]
+    public string ValuesTitle { get; set; } = "Our Values";
+    [Required, StringLength(400)]
+    public string ValuesDescription { get; set; } = "Safety, reliability, and excellence in every load we haul.";
     public bool IsActive { get; set; } = true;
 }
 

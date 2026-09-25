@@ -46,6 +46,14 @@
             <div class="field full-span"><label asp-for="AboutSection.ImageUrl"></label><input asp-for="AboutSection.ImageUrl" /><span asp-validation-for="AboutSection.ImageUrl"></span></div>
             <div class="field full-span"><label>Upload about image</label><input type="file" name="aboutFile" accept="image/jpeg,image/png,image/webp" />@if (!string.IsNullOrWhiteSpace(Model.CurrentAboutImageUrl)){<small>Current: @Model.CurrentAboutImageUrl</small>}</div>
 
+            <div class="field full-span"><h3>Mission / Vision / Values</h3></div>
+            <div class="field"><label asp-for="AboutSection.MissionTitle"></label><input asp-for="AboutSection.MissionTitle" /><span asp-validation-for="AboutSection.MissionTitle"></span></div>
+            <div class="field"><label asp-for="AboutSection.MissionDescription"></label><input asp-for="AboutSection.MissionDescription" /><span asp-validation-for="AboutSection.MissionDescription"></span></div>
+            <div class="field"><label asp-for="AboutSection.VisionTitle"></label><input asp-for="AboutSection.VisionTitle" /><span asp-validation-for="AboutSection.VisionTitle"></span></div>
+            <div class="field"><label asp-for="AboutSection.VisionDescription"></label><input asp-for="AboutSection.VisionDescription" /><span asp-validation-for="AboutSection.VisionDescription"></span></div>
+            <div class="field"><label asp-for="AboutSection.ValuesTitle"></label><input asp-for="AboutSection.ValuesTitle" /><span asp-validation-for="AboutSection.ValuesTitle"></span></div>
+            <div class="field"><label asp-for="AboutSection.ValuesDescription"></label><input asp-for="AboutSection.ValuesDescription" /><span asp-validation-for="AboutSection.ValuesDescription"></span></div>
+
             <div class="field full-span"><h2>Contact</h2></div>
             <div class="field full-span"><label asp-for="ContactSettings.CompanyName"></label><input asp-for="ContactSettings.CompanyName" /><span asp-validation-for="ContactSettings.CompanyName"></span></div>
             <div class="field full-span"><label asp-for="ContactSettings.Address"></label><input asp-for="ContactSettings.Address" /><span asp-validation-for="ContactSettings.Address"></span></div>

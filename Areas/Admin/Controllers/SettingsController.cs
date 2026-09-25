@@ -64,6 +64,12 @@ public class SettingsController : Controller
                 Subtitle = about.Subtitle,
                 Description = about.Description,
                 ImageUrl = about.ImageUrl,
+                MissionTitle = about.MissionTitle,
+                MissionDescription = about.MissionDescription,
+                VisionTitle = about.VisionTitle,
+                VisionDescription = about.VisionDescription,
+                ValuesTitle = about.ValuesTitle,
+                ValuesDescription = about.ValuesDescription,
                 IsActive = about.IsActive
             },
             ContactSettings = new ContactSettingsInputViewModel
@@ -127,6 +133,12 @@ public class SettingsController : Controller
         existingAbout.Title = model.AboutSection.Title.Trim();
         existingAbout.Subtitle = model.AboutSection.Subtitle.Trim();
         existingAbout.Description = model.AboutSection.Description.Trim();
+        existingAbout.MissionTitle = model.AboutSection.MissionTitle.Trim();
+        existingAbout.MissionDescription = model.AboutSection.MissionDescription.Trim();
+        existingAbout.VisionTitle = model.AboutSection.VisionTitle.Trim();
+        existingAbout.VisionDescription = model.AboutSection.VisionDescription.Trim();
+        existingAbout.ValuesTitle = model.AboutSection.ValuesTitle.Trim();
+        existingAbout.ValuesDescription = model.AboutSection.ValuesDescription.Trim();
         existingAbout.IsActive = model.AboutSection.IsActive;
 
         existingContact.CompanyName = model.ContactSettings.CompanyName.Trim();
