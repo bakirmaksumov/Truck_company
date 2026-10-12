@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#aeb2b7"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe52b"/>
+      <stop offset="1" stop-color="#f2a900"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="72" fill="#050505"/>
+  <path fill="url(#steel)" d="M106 145Q123 105 165 105h206l-38 55H199l-16 27h153l-34 50H150l-16 28h148l-35 53H69z"/>
+  <path fill="url(#gold)" d="M374 105h79l-99 158h106l-38 55H227z"/>
+</svg>
