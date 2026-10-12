@@ -11,6 +11,7 @@
     var ogTitle = !string.IsNullOrWhiteSpace(siteSettings?.OpenGraphTitle) ? siteSettings.OpenGraphTitle : metaTitle;
     var ogDescription = !string.IsNullOrWhiteSpace(siteSettings?.OpenGraphDescription) ? siteSettings.OpenGraphDescription : metaDescription;
     var canonicalUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}";
+    var logoImageUrl = !string.IsNullOrWhiteSpace(siteSettings?.LogoImageUrl) ? siteSettings.LogoImageUrl : "/images/logo-mark.png";
     var organizationSchema = new Dictionary<string, object?>
     {
         ["@context"] = "https://schema.org",
@@ -68,7 +69,7 @@
     <header class="site-header">
         <div class="container topbar-inner">
             <a asp-controller="Home" asp-action="Index" class="brand" aria-label="Home">
-                <span class="brand-mark"><img src="~/images/logo-mark.png" alt="Express Liner LLC" /></span>
+                <span class="brand-mark"><img src="@logoImageUrl" alt="Express Liner LLC" /></span>
                 <span class="brand-text">
                     <span class="brand-line-1">EXPRESS</span>
                     <span class="brand-line-2">LINER LLC</span>
@@ -100,7 +101,7 @@
         <div class="container footer-inner">
             <div class="footer-brand">
                 <div class="brand small-brand">
-                    <span class="brand-mark"><img src="~/images/logo-mark.png" alt="Express Liner LLC" /></span>
+                    <span class="brand-mark"><img src="@logoImageUrl" alt="Express Liner LLC" /></span>
                     <span class="brand-text">
                         <span class="brand-line-1">EXPRESS</span>
                         <span class="brand-line-2">LINER LLC</span>
