@@ -113,14 +113,6 @@ public static class SeedData
                 IsActive = true
             });
         }
-        else
-        {
-            var existingHero = await dbContext.HeroSections.FirstOrDefaultAsync();
-            if (existingHero != null)
-            {
-                existingHero.BackgroundImageUrl = "/images/truck.png";
-            }
-        }
 
         if (!await dbContext.AboutSections.AnyAsync())
         {
@@ -132,17 +124,6 @@ public static class SeedData
                 ImageUrl = "/images/truck2.png",
                 IsActive = true
             });
-        }
-        else
-        {
-            var existingAbout = await dbContext.AboutSections.FirstOrDefaultAsync();
-            if (existingAbout != null)
-            {
-                existingAbout.Title = "EXPRESS LINER LLC";
-                existingAbout.Subtitle = "ABOUT US";
-                existingAbout.Description = "At Express Liner LLC, our mission is simple – to provide dependable, efficient, and cost-effective transportation solutions. With a focus on safety, communication, and customer satisfaction, we go the extra mile to keep your business moving forward.";
-                existingAbout.ImageUrl = "/images/truck2.png";
-            }
         }
 
         if (!await dbContext.ContactSettings.AnyAsync())
